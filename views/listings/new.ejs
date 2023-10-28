@@ -1,0 +1,153 @@
+<% layout("/layouts/boilerplate") -%>
+
+
+
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+
+            <h3>Create a New Listing</h3>
+            <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="listing[title]" placeholder="Add a catchy title" type="text" class="form-control"
+                        required />
+                    <div class="valid-feedback">Title looks good!</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" placeholder="enter description" class="form-control"
+                        required></textarea>
+                    <div class="invalid-feedback">Please enter a short description.</div>
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="image" class="form-label">Upload Listing Image </label>
+                        <input name="listing[image]" type="file" class="form-control" />
+                    </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label for="catagory" class="form-label">Catagory</label>
+                        <div class="dropdown" class="mb-3 col-md-6">
+                            <button class="btn btn-success dropdown-toggle " type="button" id="multiSelectDropdown"
+                                data-bs-toggle="dropdown">
+                                Choose Your Catagory
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="multiSelectDropdown" >
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="Trending">
+                                        Trending
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="Rooms">
+                                        Rooms
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="Iconic cities">
+                                        Iconic cities
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="Mountains">
+                                        Mountains
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Castles">
+                                        Castles
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Amazing pools">
+                                        Amazing pools
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Camping">
+                                        Camping
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Farms">
+                                        Farms
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Artic">
+                                        Artic
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Domes">
+                                        Domes
+                                    </label>
+                                </li><li>
+                                    <label>
+                                        <input type="checkbox" value="Boats">
+                                        Boats
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input name="listing[price]" placeholder="1200" type="number" class="form-control" required />
+                        <div class="invalid-feedback">Price should be valid.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input name="listing[country]" placeholder="India" type="text" class="form-control" required />
+                        <div class="invalid-feedback">Country name should be valid.</div>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input name="listing[location]" placeholder="New Delhi" type="text" class="form-control" />
+                    <div class="invalid-feedback">Location should be valid.</div>
+                </div>
+
+
+                <button class="btn btn-dark add-btn mt-3">Add</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        const dropdownButton =
+            document.getElementById('multiSelectDropdown');
+        const dropdownMenu =
+            document.querySelector('.dropdown-menu');
+        let mySelectedItems = [];
+
+        function handleCB(event) {
+            const checkbox = event.target;
+            if (checkbox.checked) {
+                mySelectedItems.push(checkbox.value);
+            } else {
+                mySelectedItems =
+                    mySelectedItems.filter((item) => item !== checkbox.value);
+            }
+
+            dropdownButton.innerText = mySelectedItems.length > 0
+                ? mySelectedItems.join(', ') : 'Select Items';
+        }
+
+        dropdownMenu.addEventListener('change', handleCB);
+    </script>
